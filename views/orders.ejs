@@ -1,0 +1,30 @@
+<%- include('partials/header', { pageTitle: 'My Orders' }) %>
+
+<div class="wrap section-pad">
+  <h2>My Orders</h2>
+  <% if (orders.length === 0) { %>
+    <div class="empty-state">
+      <span class="emoji">📦</span>
+      <p>You haven't placed any orders yet.</p>
+      <a href="/" class="btn btn-primary" style="margin-top:10px;">Start ordering</a>
+    </div>
+  <% } else { %>
+    <% orders.forEach(o => { const v = vendorsById[o.vendor_id]; %>
+      <div class="order-card">
+        <div class="row1">
+          <div>
+            <strong><%= v ? v.name : 'Vendor' %></strong>
+            <div style="color:var(--ink-soft);font-size:0.88rem;">Order #<%= o.id %> · <%= new Date(o.created_at.replace(' ', 'T') + 'Z').toLocaleString() %></div>
+          </div>
+          <span class="status-pill <%= o.status %>"><%= o.status %></span>
+        </div>
+        <div style="margin-top:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+          <span style="color:var(--ink-soft);"><%= o.mode === 'food' ? '🍜 Food order' : '🥦 Instamart order' %><% if (o.coupon_code) { %> · 🏷️ <%= o.coupon_code %><% } %></span>
+          <span><strong>₹<%= o.total.toFixed(0) %></strong> &nbsp; <a href="/order/<%= o.id %>" class="btn btn-outline" style="padding:6px 14px;font-size:0.88rem;">Track</a></span>
+        </div>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

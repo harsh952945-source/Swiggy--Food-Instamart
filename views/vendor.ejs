@@ -1,0 +1,68 @@
+<%- include('partials/header', { pageTitle: vendor.name }) %>
+
+<div class="wrap">
+  <div class="vendor-hero">
+    <% if (vendor.image_url) { %>
+      <div class="emoji-badge has-photo" style="background: <%= vendor.color %>;">
+        <span><%= vendor.image_emoji %></span>
+        <img src="<%= vendor.image_url %>" alt="<%= vendor.name %>" referrerpolicy="no-referrer"
+          onload="this.parentNode.classList.add('loaded')" onerror="var p=this.parentNode;this.remove();p.classList.add('loaded')">
+      </div>
+    <% } else { %>
+      <div class="emoji-badge" style="background: <%= vendor.color %>;"><%= vendor.image_emoji %></div>
+    <% } %>
+    <div style="flex:1;">
+      <h2 style="margin-bottom:4px;"><%= vendor.name %></h2>
+      <span class="tag" style="color:var(--ink-soft);"><%= vendor.category %></span>
+      <div class="vendor-meta" style="margin-top:8px;justify-content:flex-start;gap:14px;">
+        <span class="rating-pill">★ <%= vendor.rating %></span>
+        <span><%= vendor.delivery_time %></span>
+      </div>
+      <% if (vendor.description) { %><p style="color:var(--ink-soft);margin-top:8px;max-width:60ch;"><%= vendor.description %></p><% } %>
+    </div>
+    <form action="/favourites/toggle" method="POST" class="fav-inline">
+      <input type="hidden" name="kind" value="vendor">
+      <input type="hidden" name="ref_id" value="<%= vendor.id %>">
+      <input type="hidden" name="next" value="<%= currentPath %>">
+      <button type="submit" class="btn btn-outline fav-btn <%= favVendors.has(vendor.id) ? 'on' : '' %>"><%= favVendors.has(vendor.id) ? '♥ Saved' : '♡ Save' %></button>
+    </form>
+  </div>
+
+  <% grouped.forEach(group => { %>
+    <div class="menu-section">
+      <h3><%= group.cat %></h3>
+      <% group.items.forEach(item => { %>
+        <div class="menu-item">
+          <% if (item.image_url) { %>
+            <div class="item-emoji has-photo">
+              <span><%= item.image_emoji %></span>
+              <img src="<%= item.image_url %>" alt="<%= item.name %>" loading="lazy" referrerpolicy="no-referrer"
+                onload="this.parentNode.classList.add('loaded')" onerror="var p=this.parentNode;this.remove();p.classList.add('loaded')">
+            </div>
+          <% } else { %>
+            <div class="item-emoji"><%= item.image_emoji %></div>
+          <% } %>
+          <div class="item-info">
+            <h4><span class="veg-dot <%= item.veg ? '' : 'non' %>"></span><%= item.name %></h4>
+            <% if (item.description) { %><p><%= item.description %></p><% } %>
+            <div class="item-price">₹<%= item.price.toFixed(0) %> <span style="color:var(--ink-soft);font-weight:400;font-size:0.85rem;"><%= item.unit %></span></div>
+          </div>
+          <form action="/favourites/toggle" method="POST" class="fav-inline">
+            <input type="hidden" name="kind" value="product">
+            <input type="hidden" name="ref_id" value="<%= item.id %>">
+            <input type="hidden" name="next" value="<%= currentPath %>">
+            <button type="submit" class="heart small <%= favProducts.has(item.id) ? 'on' : '' %>" aria-label="Favourite"><%= favProducts.has(item.id) ? '♥' : '♡' %></button>
+          </form>
+          <form action="/cart/add" method="POST">
+            <input type="hidden" name="productId" value="<%= item.id %>">
+            <input type="hidden" name="vendorId" value="<%= vendor.id %>">
+            <input type="hidden" name="mode" value="<%= vendor.mode %>">
+            <button class="add-btn" type="submit">Add</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('partials/footer') %>

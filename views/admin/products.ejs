@@ -1,0 +1,40 @@
+<%- include('../partials/header', { pageTitle: 'Manage Products' }) %>
+
+<div class="admin-shell">
+  <%- include('../partials/admin-side', { active: 'products' }) %>
+  <div class="admin-main">
+    <div class="admin-toolbar">
+      <h2>Products</h2>
+      <a href="/admin/products/new" class="btn btn-secondary">+ Add Product</a>
+    </div>
+    <table class="admin-table">
+      <thead><tr><th></th><th>Name</th><th>Vendor</th><th>Category</th><th>Price</th><th>Available</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% products.forEach(p => { %>
+          <tr>
+            <td>
+              <% if (p.image_url) { %>
+                <img src="<%= p.image_url %>" alt="" referrerpolicy="no-referrer" style="width:36px;height:36px;object-fit:cover;border-radius:6px;">
+              <% } else { %>
+                <span style="font-size:1.3rem;"><%= p.image_emoji %></span>
+              <% } %>
+            </td>
+            <td><%= p.name %></td>
+            <td><%= p.vendor_name %></td>
+            <td><%= p.category %></td>
+            <td>₹<%= p.price.toFixed(0) %></td>
+            <td><%= p.is_available ? 'Yes' : 'No' %></td>
+            <td class="table-actions">
+              <a class="link-btn" href="/admin/products/<%= p.id %>/edit">Edit</a>
+              <form action="/admin/products/<%= p.id %>/delete" method="POST" onsubmit="return confirm('Delete this product?');">
+                <button class="link-btn" style="color:#B3261E;" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer', { minimal: true }) %>

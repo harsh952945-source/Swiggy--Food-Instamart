@@ -1,0 +1,99 @@
+<%- include('partials/header') %>
+
+<section class="hero-banner">
+  <div class="wrap">
+    <h1>Order food &amp; groceries.<br>Discover your next favourite meal.</h1>
+    <p class="lead">One app, two ways to get what you need — delivered fast.</p>
+
+    <form class="hero-search-row" action="/browse/food" method="GET">
+      <div class="loc-field">
+        <span class="loc-icon">📍</span>
+        <input type="text" placeholder="Enter your delivery location" value="Pune, Maharashtra" aria-label="Delivery location">
+        <span class="loc-caret">▾</span>
+      </div>
+      <div class="search-field">
+        <input type="text" name="q" placeholder="Search for restaurant, dish or more" aria-label="Search">
+        <button type="submit" class="search-icon-btn" aria-label="Search">🔍</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<div class="wrap">
+  <!-- Rotating offer banners (use your real coupon codes) -->
+  <div class="offer-carousel" id="offers">
+    <div class="offer-slides">
+      <% const slides = coupons.slice(0, 3); const emojis = ['🎉','🍕','🥦']; %>
+      <% if (slides.length === 0) { %>
+        <div class="offer-slide s0 on"><div><small>WELCOME OFFER</small><h3>Hungry? Order now</h3><small>Fast delivery from your favourite places</small></div><div class="offer-emoji">🍽️</div></div>
+      <% } %>
+      <% slides.forEach((c, i) => { %>
+        <div class="offer-slide s<%= i %> <%= i === 0 ? 'on' : '' %>">
+          <div>
+            <small>USE CODE <span class="offer-code"><%= c.code %></span></small>
+            <h3><%= c.type === 'percent' ? c.value + '% OFF' : '₹' + c.value + ' OFF' %></h3>
+            <small><%= c.description %></small>
+          </div>
+          <div class="offer-emoji"><%= emojis[i % 3] %></div>
+        </div>
+      <% }) %>
+    </div>
+    <% if (slides.length > 1) { %>
+      <div class="offer-dots">
+        <% slides.forEach((c, i) => { %><button type="button" class="<%= i === 0 ? 'on' : '' %>" aria-label="Offer <%= i + 1 %>"></button><% }) %>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Category circles -->
+  <section class="home-section">
+    <h2>What's on your mind?</h2>
+    <div class="cat-row">
+      <% [['🍕','Pizza'],['🍛','Biryani'],['🍔','Burger'],['🥞','Dosa'],['🥟','Momos'],['🍣','Sushi'],['🍜','Noodles'],['☕','Coffee']].forEach(c => { %>
+        <a class="cat-item" href="/browse/food?q=<%= c[1] %>">
+          <span class="cat-circle"><%= c[0] %></span><%= c[1] %>
+        </a>
+      <% }) %>
+    </div>
+  </section>
+
+  <div class="promo-grid">
+    <a href="/browse/food" class="promo-card">
+      <div class="promo-text">
+        <h2>Food Delivery</h2>
+        <p class="promo-sub">FROM RESTAURANTS</p>
+        <span class="promo-badge">UPTO 60% OFF</span>
+      </div>
+      <span class="promo-emoji">🍜</span>
+      <span class="promo-arrow">→</span>
+    </a>
+    <a href="/browse/mart" class="promo-card alt">
+      <div class="promo-text">
+        <h2>Instamart</h2>
+        <p class="promo-sub">INSTANT GROCERY</p>
+        <span class="promo-badge">UPTO 60% OFF</span>
+      </div>
+      <span class="promo-emoji">🥦</span>
+      <span class="promo-arrow">→</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var slides = document.querySelectorAll('.offer-slide');
+    var dots = document.querySelectorAll('.offer-dots button');
+    if (slides.length < 2) return;
+    var i = 0, timer;
+    function go(n) {
+      i = n;
+      slides.forEach(function (s, k) { s.classList.toggle('on', k === n); });
+      dots.forEach(function (d, k) { d.classList.toggle('on', k === n); });
+    }
+    function start() { timer = setInterval(function () { go((i + 1) % slides.length); }, 4000); }
+    dots.forEach(function (d, k) { d.addEventListener('click', function () { clearInterval(timer); go(k); start(); }); });
+    start();
+  })();
+</script>
+
+<%- include('partials/footer') %>

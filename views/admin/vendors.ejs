@@ -1,0 +1,40 @@
+<%- include('../partials/header', { pageTitle: 'Manage Vendors' }) %>
+
+<div class="admin-shell">
+  <%- include('../partials/admin-side', { active: 'vendors' }) %>
+  <div class="admin-main">
+    <div class="admin-toolbar">
+      <h2>Vendors</h2>
+      <a href="/admin/vendors/new" class="btn btn-secondary">+ Add Vendor</a>
+    </div>
+    <table class="admin-table">
+      <thead><tr><th></th><th>Name</th><th>Mode</th><th>Category</th><th>Rating</th><th>Active</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% vendors.forEach(v => { %>
+          <tr>
+            <td>
+              <% if (v.image_url) { %>
+                <img src="<%= v.image_url %>" alt="" referrerpolicy="no-referrer" style="width:40px;height:40px;object-fit:cover;border-radius:8px;">
+              <% } else { %>
+                <span style="font-size:1.4rem;"><%= v.image_emoji %></span>
+              <% } %>
+            </td>
+            <td><%= v.name %></td>
+            <td><span class="badge-mode <%= v.mode %>"><%= v.mode === 'food' ? 'Food' : 'Mart' %></span></td>
+            <td><%= v.category %></td>
+            <td>★ <%= v.rating %></td>
+            <td><%= v.is_active ? 'Yes' : 'No' %></td>
+            <td class="table-actions">
+              <a class="link-btn" href="/admin/vendors/<%= v.id %>/edit">Edit</a>
+              <form action="/admin/vendors/<%= v.id %>/delete" method="POST" onsubmit="return confirm('Delete this vendor and all its products?');">
+                <button class="link-btn" style="color:#B3261E;" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<%- include('../partials/footer', { minimal: true }) %>

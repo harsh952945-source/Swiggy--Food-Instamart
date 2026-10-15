@@ -1,0 +1,45 @@
+<%- include('partials/header', { pageTitle: 'Track Order #' + order.id }) %>
+
+<div class="wrap section-pad" style="max-width:760px;">
+  <a href="/orders" style="color:var(--ink-soft);">← All orders</a>
+  <h2 style="margin-top:10px;">Order #<%= order.id %> · <%= vendor.name %></h2>
+  <p style="color:var(--ink-soft);margin-bottom:6px;">Placed on <%= new Date(order.created_at.replace(' ', 'T') + 'Z').toLocaleString() %></p>
+
+  <div class="track-card">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <h3 style="font-size:1.1rem;margin:0;">Order status</h3>
+      <span class="status-pill <%= order.status %>" id="statusPill"><%= order.status %></span>
+    </div>
+    <%- include('partials/timeline') %>
+    <% if (order.status !== 'Delivered' && order.status !== 'Cancelled') { %>
+      <p style="color:var(--ink-soft);font-size:0.9rem;margin:0;">This page updates automatically when the restaurant changes your order status.</p>
+    <% } %>
+  </div>
+
+  <div class="summary-box">
+    <h3 style="margin-bottom:12px;">Items</h3>
+    <% items.forEach(i => { %>
+      <div class="summary-row"><span><%= i.quantity %> × <%= i.name %></span><span>₹<%= (i.price * i.quantity).toFixed(0) %></span></div>
+    <% }) %>
+    <% if (order.discount > 0) { %><div class="summary-row discount"><span>Coupon (<%= order.coupon_code %>)</span><span>− ₹<%= order.discount.toFixed(0) %></span></div><% } %>
+    <div class="summary-row"><span>Delivery fee</span><span>₹<%= order.delivery_fee.toFixed(0) %></span></div>
+    <div class="summary-row total"><span>Total (<%= order.payment_method %>)</span><span>₹<%= order.total.toFixed(0) %></span></div>
+  </div>
+  <p style="color:var(--ink-soft);margin-top:14px;">Delivering to: <%= order.address %></p>
+</div>
+
+<% if (order.status !== 'Delivered' && order.status !== 'Cancelled') { %>
+<script>
+  (function () {
+    var current = <%- JSON.stringify(order.status) %>;
+    setInterval(function () {
+      fetch('/order/<%= order.id %>/status', { credentials: 'same-origin' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (d) { if (d && d.status !== current) location.reload(); })
+        .catch(function () {});
+    }, 8000);
+  })();
+</script>
+<% } %>
+
+<%- include('partials/footer') %>

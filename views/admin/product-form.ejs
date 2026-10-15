@@ -1,0 +1,61 @@
+<%- include('../partials/header', { pageTitle: product ? 'Edit Product' : 'Add Product' }) %>
+
+<div class="admin-shell">
+  <%- include('../partials/admin-side', { active: 'products' }) %>
+  <div class="admin-main">
+    <h2><%= product ? 'Edit Product' : 'Add Product' %></h2>
+    <form action="<%= product ? '/admin/products/' + product.id + '/edit' : '/admin/products/new' %>" method="POST" enctype="multipart/form-data" style="max-width:520px;">
+      <div class="field">
+        <label>Vendor</label>
+        <select name="vendor_id" required>
+          <% vendors.forEach(v => { %>
+            <option value="<%= v.id %>" <%= product && product.vendor_id === v.id ? 'selected' : '' %>><%= v.name %> (<%= v.mode %>)</option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" required value="<%= product ? product.name : '' %>">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea name="description"><%= product ? product.description : '' %></textarea>
+      </div>
+      <div class="field">
+        <label>Price (₹)</label>
+        <input type="number" step="0.01" name="price" required value="<%= product ? product.price : '' %>">
+      </div>
+      <div class="field">
+        <label>Unit (e.g. "1 plate", "1 kg")</label>
+        <input type="text" name="unit" value="<%= product ? product.unit : '' %>">
+      </div>
+      <div class="field">
+        <label>Category (menu section)</label>
+        <input type="text" name="category" required value="<%= product ? product.category : '' %>">
+      </div>
+      <div class="field">
+        <label>Upload a photo from your computer (JPG/PNG/WEBP, max 5 MB)</label>
+        <input type="file" name="image_file" accept="image/*">
+      </div>
+      <div class="field">
+        <label>Or paste a photo link (the upload above takes priority)</label>
+        <input type="text" name="image_url" placeholder="https://..." value="<%= product && product.image_url ? product.image_url : '' %>">
+      </div>
+      <div class="field">
+        <label>Emoji Icon (fallback if no photo)</label>
+        <input type="text" name="image_emoji" value="<%= product ? product.image_emoji : '🍽️' %>">
+      </div>
+      <div class="field">
+        <label><input type="checkbox" name="veg" style="width:auto;" <%= !product || product.veg ? 'checked' : '' %>> Vegetarian</label>
+      </div>
+      <% if (product) { %>
+      <div class="field">
+        <label><input type="checkbox" name="is_available" style="width:auto;" <%= product.is_available ? 'checked' : '' %>> Available</label>
+      </div>
+      <% } %>
+      <button type="submit" class="btn btn-secondary">Save Product</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer', { minimal: true }) %>

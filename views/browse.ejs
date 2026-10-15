@@ -1,0 +1,56 @@
+<%- include('partials/header', { pageTitle: mode === 'food' ? 'Restaurants' : 'Instamart' }) %>
+
+<div class="wrap section-pad">
+  <div class="page-title-row">
+    <div>
+      <h2><%= mode === 'food' ? 'Restaurants near you' : 'Instamart — essentials in minutes' %></h2>
+      <span class="tag"><%= vendors.length %> <%= mode === 'food' ? 'restaurants' : 'stores' %> available</span>
+    </div>
+  </div>
+
+  <form class="search-bar" method="GET" action="/browse/<%= mode %>">
+    <input type="text" name="q" value="<%= q %>" placeholder="<%= mode === 'food' ? 'Search restaurants, cuisines or dishes...' : 'Search stores or products...' %>">
+    <button class="btn btn-secondary" type="submit">Search</button>
+  </form>
+
+  <% if (vendors.length === 0) { %>
+    <div class="empty-state">
+      <span class="emoji">🔍</span>
+      <p>No results for "<%= q %>". Try a different search.</p>
+    </div>
+  <% } else { %>
+    <div class="vendor-grid">
+      <% vendors.forEach(v => { %>
+        <div class="vendor-card">
+          <a href="/vendor/<%= v.id %>" class="vendor-link">
+            <% if (v.image_url) { %>
+              <div class="vendor-banner has-photo" style="--vc: <%= v.color %>22;">
+                <span><%= v.image_emoji %></span>
+                <img src="<%= v.image_url %>" alt="<%= v.name %>" loading="lazy" referrerpolicy="no-referrer"
+                  onload="this.parentNode.classList.add('loaded')" onerror="var p=this.parentNode;this.remove();p.classList.add('loaded')">
+              </div>
+            <% } else { %>
+              <div class="vendor-banner" style="--vc: <%= v.color %>22;"><%= v.image_emoji %></div>
+            <% } %>
+            <div class="vendor-body">
+              <h3><%= v.name %></h3>
+              <span class="tag" style="color:var(--ink-soft);font-size:0.88rem;"><%= v.category %></span>
+              <div class="vendor-meta">
+                <span class="rating-pill">★ <%= v.rating %></span>
+                <span><%= v.delivery_time %></span>
+              </div>
+            </div>
+          </a>
+          <form action="/favourites/toggle" method="POST" class="fav-form">
+            <input type="hidden" name="kind" value="vendor">
+            <input type="hidden" name="ref_id" value="<%= v.id %>">
+            <input type="hidden" name="next" value="<%= currentPath %>">
+            <button type="submit" class="heart <%= favVendors.has(v.id) ? 'on' : '' %>" aria-label="<%= favVendors.has(v.id) ? 'Remove from favourites' : 'Add to favourites' %>"><%= favVendors.has(v.id) ? '♥' : '♡' %></button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

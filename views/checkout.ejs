@@ -1,0 +1,37 @@
+<%- include('partials/header', { pageTitle: 'Checkout' }) %>
+
+<div class="wrap section-pad">
+  <h2>Checkout</h2>
+  <div class="two-col">
+    <div>
+      <% if (error) { %><div class="form-error"><%= error %></div><% } %>
+      <form action="/checkout" method="POST">
+        <div class="field">
+          <label for="address">Delivery Address</label>
+          <textarea id="address" name="address" required placeholder="House no, street, area, city, pincode"><%= currentUser && currentUser.address ? currentUser.address : '' %></textarea>
+        </div>
+        <div class="field">
+          <label for="paymentMethod">Payment Method</label>
+          <select id="paymentMethod" name="paymentMethod">
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Credit / Debit Card</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Place Order · ₹<%= total.toFixed(0) %></button>
+      </form>
+    </div>
+    <div>
+      <%- include('partials/coupon-box', { next: '/checkout' }) %>
+      <div class="summary-box">
+        <h3 style="margin-bottom:14px;">Order from <%= vendor.name %></h3>
+        <div class="summary-row"><span>Subtotal</span><span>₹<%= subtotal.toFixed(0) %></span></div>
+        <% if (discount > 0) { %><div class="summary-row discount"><span>Coupon (<%= appliedCode %>)</span><span>− ₹<%= discount %></span></div><% } %>
+        <div class="summary-row"><span>Delivery fee</span><span>₹<%= deliveryFee.toFixed(0) %></span></div>
+        <div class="summary-row total"><span>Total</span><span>₹<%= total.toFixed(0) %></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

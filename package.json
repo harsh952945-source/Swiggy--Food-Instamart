@@ -1,0 +1,24 @@
+{
+  "name": "zappyeats",
+  "version": "1.0.0",
+  "description": "ZappyEats - Food Delivery & Instant Grocery Platform (BCA Final Year Project)",
+  "main": "server.js",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "seed": "node db/seed.js",
+    "localize-images": "node scripts/localize-images.js",
+    "export-seed": "node scripts/export-seed.js",
+    "build-static": "node scripts/build-static.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "method-override": "^3.0.0",
+    "multer": "^2.4.0"
+  }
+}

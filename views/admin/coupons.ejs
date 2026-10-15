@@ -1,0 +1,49 @@
+<%- include('../partials/header', { pageTitle: 'Coupons' }) %>
+
+<div class="admin-shell">
+  <%- include('../partials/admin-side', { active: 'coupons' }) %>
+  <div class="admin-main">
+    <h2>Coupons</h2>
+    <% if (msg) { %><div class="admin-msg <%= msg.type %>"><%= msg.text %></div><% } %>
+
+    <div class="chart-card" style="margin-bottom:24px;">
+      <h3>Create a coupon</h3>
+      <form action="/admin/coupons/new" method="POST" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end;">
+        <div class="field" style="margin:0;"><label>Code</label><input type="text" name="code" placeholder="e.g. FEAST30" required maxlength="20"></div>
+        <div class="field" style="margin:0;"><label>Type</label>
+          <select name="type"><option value="percent">Percent (%)</option><option value="flat">Flat amount (₹)</option></select></div>
+        <div class="field" style="margin:0;"><label>Value</label><input type="number" name="value" step="1" min="1" required></div>
+        <div class="field" style="margin:0;"><label>Min order (₹)</label><input type="number" name="min_order" min="0" value="0"></div>
+        <div class="field" style="margin:0;"><label>Max discount (₹, % only)</label><input type="number" name="max_discount" min="0" value="0"></div>
+        <div class="field" style="margin:0;"><label>Expires on (optional)</label><input type="date" name="expires_at"></div>
+        <div class="field" style="margin:0;grid-column:1/-1;"><label>Description shown to customers</label><input type="text" name="description" placeholder="e.g. 30% off on orders above ₹299"></div>
+        <button class="btn btn-secondary" type="submit">Create coupon</button>
+      </form>
+    </div>
+
+    <div style="overflow-x:auto;">
+    <table class="admin-table">
+      <thead><tr><th>Code</th><th>Discount</th><th>Min order</th><th>Used</th><th>Expires</th><th>Active</th><th>Actions</th></tr></thead>
+      <tbody>
+        <% coupons.forEach(c => { %>
+          <tr>
+            <td><strong><%= c.code %></strong><div style="color:var(--ink-soft);font-size:0.8rem;"><%= c.description %></div></td>
+            <td><%= c.type === 'percent' ? c.value + '%' + (c.max_discount > 0 ? ' (max ₹' + c.max_discount + ')' : '') : '₹' + c.value %></td>
+            <td>₹<%= c.min_order %></td>
+            <td><%= c.times_used %></td>
+            <td><%= c.expires_at || '—' %></td>
+            <td><%= c.is_active ? 'Yes' : 'No' %></td>
+            <td class="table-actions">
+              <form action="/admin/coupons/<%= c.id %>/toggle" method="POST"><button class="link-btn" type="submit"><%= c.is_active ? 'Disable' : 'Enable' %></button></form>
+              <form action="/admin/coupons/<%= c.id %>/delete" method="POST" onsubmit="return confirm('Delete this coupon?');"><button class="link-btn" style="color:var(--danger);" type="submit">Delete</button></form>
+            </td>
+          </tr>
+        <% }) %>
+        <% if (coupons.length === 0) { %><tr><td colspan="7" style="color:var(--ink-soft);">No coupons yet.</td></tr><% } %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer', { minimal: true }) %>

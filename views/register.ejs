@@ -1,0 +1,35 @@
+<%- include('partials/header', { pageTitle: 'Sign Up' }) %>
+
+<div class="wrap">
+  <div class="form-card">
+    <h2>Create your account</h2>
+    <p class="sub">Sign up to start ordering.</p>
+    <% if (error) { %><div class="form-error"><%= error %></div><% } %>
+    <form action="/register" method="POST">
+      <div class="field">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required autofocus>
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required minlength="4">
+      </div>
+      <div class="field">
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" name="phone">
+      </div>
+      <div class="field">
+        <label for="address">Default Delivery Address</label>
+        <textarea id="address" name="address" placeholder="House no, street, area, city, pincode"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+    </form>
+    <p class="form-alt">Already have an account? <a href="/login">Log in</a></p>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

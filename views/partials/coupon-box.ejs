@@ -1,0 +1,28 @@
+<div class="coupon-box">
+  <% if (appliedCode) { %>
+    <div class="coupon-applied">
+      <span>🏷️ <b><%= appliedCode %></b> applied — you save ₹<%= discount %></span>
+      <form action="/coupon/remove" method="POST" style="display:inline;">
+        <input type="hidden" name="next" value="<%= next %>">
+        <button type="submit" class="link-btn">Remove</button>
+      </form>
+    </div>
+  <% } else { %>
+    <form action="/coupon/apply" method="POST" class="coupon-form">
+      <input type="text" name="code" placeholder="Have a coupon code?" aria-label="Coupon code" autocomplete="off">
+      <input type="hidden" name="next" value="<%= next %>">
+      <button type="submit" class="btn btn-outline">Apply</button>
+    </form>
+    <% if (couponMsg && couponMsg.type === 'error') { %><p class="coupon-msg error"><%= couponMsg.text %></p><% } %>
+    <% if (offers.length) { %>
+      <div class="coupon-chips">
+        <% offers.forEach(o => { %>
+          <form action="/coupon/apply" method="POST">
+            <input type="hidden" name="code" value="<%= o.code %>"><input type="hidden" name="next" value="<%= next %>">
+            <button type="submit" class="coupon-chip" title="<%= o.description %>"><b><%= o.code %></b><small><%= o.description %></small></button>
+          </form>
+        <% }) %>
+      </div>
+    <% } %>
+  <% } %>
+</div>

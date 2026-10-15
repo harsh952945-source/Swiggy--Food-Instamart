@@ -1,0 +1,28 @@
+<%- include('partials/header', { pageTitle: 'Order Placed' }) %>
+
+<div class="wrap">
+  <div class="success-box">
+    <span class="emoji">✅</span>
+    <h2>Order placed!</h2>
+    <p style="color:var(--ink-soft);">Your order #<%= order.id %> from <%= vendor.name %> has been placed and is being prepared.</p>
+
+    <%- include('partials/timeline') %>
+
+    <div class="summary-box" style="text-align:left;">
+      <% items.forEach(i => { %>
+        <div class="summary-row"><span><%= i.quantity %> × <%= i.name %></span><span>₹<%= (i.price * i.quantity).toFixed(0) %></span></div>
+      <% }) %>
+      <% if (order.discount > 0) { %><div class="summary-row discount"><span>Coupon (<%= order.coupon_code %>)</span><span>− ₹<%= order.discount.toFixed(0) %></span></div><% } %>
+      <div class="summary-row"><span>Delivery fee</span><span>₹<%= order.delivery_fee.toFixed(0) %></span></div>
+      <div class="summary-row total"><span>Total</span><span>₹<%= order.total.toFixed(0) %></span></div>
+    </div>
+
+    <p style="margin-top:18px;color:var(--ink-soft);">Delivering to: <%= order.address %></p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;">
+      <a href="/order/<%= order.id %>" class="btn btn-primary">Track this order</a>
+      <a href="/orders" class="btn btn-outline">All my orders</a>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

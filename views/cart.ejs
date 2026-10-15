@@ -1,0 +1,50 @@
+<%- include('partials/header', { pageTitle: 'Your Cart' }) %>
+
+<div class="wrap section-pad">
+  <h2>Your Cart</h2>
+
+  <% if (!cart.items || cart.items.length === 0) { %>
+    <div class="empty-state">
+      <span class="emoji">🛒</span>
+      <p>Your cart is empty.</p>
+      <a href="/" class="btn btn-primary" style="margin-top:10px;">Start ordering</a>
+    </div>
+  <% } else { %>
+    <div class="two-col">
+      <div>
+        <p class="tag" style="color:var(--ink-soft);">From <strong style="color:var(--ink);"><%= vendor.name %></strong></p>
+        <% cart.items.forEach(item => { %>
+          <div class="cart-item">
+            <div>
+              <div style="font-weight:700;"><%= item.name %></div>
+              <div style="color:var(--ink-soft);font-size:0.9rem;">₹<%= item.price.toFixed(0) %> each</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;">
+              <form action="/cart/update" method="POST" class="qty-control">
+                <input type="hidden" name="productId" value="<%= item.productId %>">
+                <button type="submit" name="action" value="dec" aria-label="Decrease">−</button>
+                <span><%= item.quantity %></span>
+                <button type="submit" name="action" value="inc" aria-label="Increase">+</button>
+              </form>
+              <div style="font-weight:700;min-width:64px;text-align:right;">₹<%= (item.price * item.quantity).toFixed(0) %></div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+
+      <div>
+        <%- include('partials/coupon-box', { next: '/cart' }) %>
+        <div class="summary-box">
+          <h3 style="margin-bottom:14px;">Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span>₹<%= subtotal.toFixed(0) %></span></div>
+          <% if (discount > 0) { %><div class="summary-row discount"><span>Coupon (<%= appliedCode %>)</span><span>− ₹<%= discount %></span></div><% } %>
+          <div class="summary-row"><span>Delivery fee</span><span>₹<%= deliveryFee.toFixed(0) %></span></div>
+          <div class="summary-row total"><span>Total</span><span>₹<%= total.toFixed(0) %></span></div>
+          <a href="/checkout" class="btn btn-primary btn-block" style="margin-top:16px;text-align:center;">Proceed to Checkout</a>
+        </div>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<%- include('partials/footer') %>

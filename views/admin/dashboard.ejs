@@ -1,0 +1,76 @@
+<%- include('../partials/header', { pageTitle: 'Admin Dashboard' }) %>
+
+<div class="admin-shell">
+  <%- include('../partials/admin-side', { active: 'dashboard' }) %>
+  <div class="admin-main">
+    <h2>Dashboard</h2>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num"><%= stats.vendors %></div><div class="label">Vendors</div></div>
+      <div class="stat-card"><div class="num"><%= stats.products %></div><div class="label">Products</div></div>
+      <div class="stat-card"><div class="num"><%= stats.orders %></div><div class="label">Orders</div></div>
+      <div class="stat-card"><div class="num"><%= stats.users %></div><div class="label">Customers</div></div>
+      <div class="stat-card"><div class="num">₹<%= stats.revenue.toFixed(0) %></div><div class="label">Revenue (excl. cancelled)</div></div>
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-card">
+        <h3>Revenue — last 7 days</h3>
+        <div class="bars">
+          <% days.forEach(d => { %>
+            <div class="bar-col" title="<%= d.orders %> order(s), ₹<%= d.revenue %>">
+              <div class="bar-val"><%= d.revenue > 0 ? '₹' + d.revenue : '' %></div>
+              <div class="bar" style="height: <%= Math.max(2, Math.round(d.revenue / maxRevenue * 100)) %>%;"></div>
+              <div class="bar-lbl"><%= d.label %></div>
+            </div>
+          <% }) %>
+        </div>
+        <% if (days.every(d => d.revenue === 0)) { %><p class="chart-empty">No orders in the last 7 days yet. Place a test order to see this fill up.</p><% } %>
+      </div>
+
+      <div class="chart-card">
+        <h3>Top selling items</h3>
+        <% if (topItems.length === 0) { %>
+          <p class="chart-empty">No sales yet.</p>
+        <% } else { const maxQ = topItems[0].qty; topItems.forEach(t => { %>
+          <div class="hbar-row">
+            <div class="hbar-top"><span><%= t.name %></span><b><%= t.qty %> sold</b></div>
+            <div class="hbar-track"><div class="hbar-fill" style="width: <%= Math.round(t.qty / maxQ * 100) %>%;"></div></div>
+          </div>
+        <% }) } %>
+      </div>
+
+      <div class="chart-card" style="grid-column: 1 / -1;">
+        <h3>Food vs Instamart</h3>
+        <% if (modeSplit.length === 0) { %>
+          <p class="chart-empty">No orders yet.</p>
+        <% } else { const totalR = modeSplit.reduce((a, m) => a + m.r, 0) || 1; modeSplit.forEach(m => { %>
+          <div class="hbar-row">
+            <div class="hbar-top"><span><%= m.mode === 'food' ? '🍜 Food' : '🥦 Instamart' %> · <%= m.n %> order(s)</span><b>₹<%= m.r.toFixed(0) %></b></div>
+            <div class="hbar-track"><div class="hbar-fill <%= m.mode %>" style="width: <%= Math.round(m.r / totalR * 100) %>%;"></div></div>
+          </div>
+        <% }) } %>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom:12px;">Recent Orders</h3>
+    <div style="overflow-x:auto;">
+    <table class="admin-table">
+      <thead><tr><th>#</th><th>Customer</th><th>Vendor</th><th>Total</th><th>Status</th><th>Placed</th></tr></thead>
+      <tbody>
+        <% recentOrders.forEach(o => { %>
+          <tr>
+            <td>#<%= o.id %></td>
+            <td><%= o.user_name %></td>
+            <td><%= o.vendor_name %></td>
+            <td>₹<%= o.total.toFixed(0) %></td>
+            <td><span class="status-pill <%= o.status %>"><%= o.status %></span></td>
+            <td><%= new Date(o.created_at.replace(' ', 'T') + 'Z').toLocaleDateString() %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</div>
+
+<%- include('../partials/footer', { minimal: true }) %>

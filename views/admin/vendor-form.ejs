@@ -1,0 +1,57 @@
+<%- include('../partials/header', { pageTitle: vendor ? 'Edit Vendor' : 'Add Vendor' }) %>
+
+<div class="admin-shell">
+  <%- include('../partials/admin-side', { active: 'vendors' }) %>
+  <div class="admin-main">
+    <h2><%= vendor ? 'Edit Vendor' : 'Add Vendor' %></h2>
+    <form action="<%= vendor ? '/admin/vendors/' + vendor.id + '/edit' : '/admin/vendors/new' %>" method="POST" enctype="multipart/form-data" style="max-width:520px;">
+      <div class="field">
+        <label>Mode</label>
+        <select name="mode" required>
+          <option value="food" <%= vendor && vendor.mode === 'food' ? 'selected' : '' %>>Food (Restaurant)</option>
+          <option value="mart" <%= vendor && vendor.mode === 'mart' ? 'selected' : '' %>>Mart (Grocery/Store)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Name</label>
+        <input type="text" name="name" required value="<%= vendor ? vendor.name : '' %>">
+      </div>
+      <div class="field">
+        <label>Category (e.g. North Indian, Groceries)</label>
+        <input type="text" name="category" required value="<%= vendor ? vendor.category : '' %>">
+      </div>
+      <div class="field">
+        <label>Description</label>
+        <textarea name="description"><%= vendor ? vendor.description : '' %></textarea>
+      </div>
+      <div class="field">
+        <label>Delivery Time (e.g. "25 mins")</label>
+        <input type="text" name="delivery_time" value="<%= vendor ? vendor.delivery_time : '30 mins' %>">
+      </div>
+      <div class="field">
+        <label>Upload a photo from your computer (JPG/PNG/WEBP, max 5 MB)</label>
+        <input type="file" name="image_file" accept="image/*">
+      </div>
+      <div class="field">
+        <label>Or paste a photo link (the upload above takes priority)</label>
+        <input type="text" name="image_url" placeholder="https://..." value="<%= vendor && vendor.image_url ? vendor.image_url : '' %>">
+      </div>
+      <div class="field">
+        <label>Emoji Icon (fallback if no photo)</label>
+        <input type="text" name="image_emoji" value="<%= vendor ? vendor.image_emoji : '🍽️' %>">
+      </div>
+      <div class="field">
+        <label>Brand Color (hex)</label>
+        <input type="text" name="color" value="<%= vendor ? vendor.color : '#6C3EC9' %>">
+      </div>
+      <% if (vendor) { %>
+      <div class="field">
+        <label><input type="checkbox" name="is_active" style="width:auto;" <%= vendor.is_active ? 'checked' : '' %>> Active (visible to customers)</label>
+      </div>
+      <% } %>
+      <button type="submit" class="btn btn-secondary">Save Vendor</button>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer', { minimal: true }) %>

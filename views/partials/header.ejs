@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof pageTitle !== 'undefined' ? pageTitle + ' · ZappyEats' : 'ZappyEats — Food & Instant Grocery' %></title>
+  <meta name="referrer" content="no-referrer">
+  <script>
+    // Apply saved/system theme before the page paints (prevents a light flash in dark mode)
+    try {
+      var m = localStorage.getItem('ze-mode');
+      if (!m && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches) m = 'dark';
+      if (m) document.documentElement.setAttribute('data-mode', m);
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a href="/" class="brand"><span class="bolt">⚡</span>ZappyEats</a>
+      <nav class="header-nav">
+        <a href="/browse/food">Food</a>
+        <a href="/browse/mart">Instamart</a>
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+          <a href="/favourites" class="hide-sm">♥ Favourites</a>
+          <a href="/orders" class="hide-sm">My Orders</a>
+          <span class="hide-sm">Hi, <%= currentUser.name.split(' ')[0] %></span>
+          <form action="/logout" method="POST" style="display:inline"><button class="link-btn" style="color:#FBE9E6;text-decoration:none;" type="submit">Logout</button></form>
+        <% } else { %>
+          <a href="/login">Login</a>
+        <% } %>
+        <button type="button" id="themeToggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode"
+          onclick="var d=document.documentElement,n=d.getAttribute('data-mode')==='dark'?'light':'dark';d.setAttribute('data-mode',n);try{localStorage.setItem('ze-mode',n)}catch(e){}">
+          <span class="ico-moon">🌙</span><span class="ico-sun">☀️</span>
+        </button>
+        <a href="/cart" class="header-cart">🛒 Cart<% if (typeof cartCount !== 'undefined' && cartCount > 0) { %> (<%= cartCount %>)<% } %></a>
+      </nav>
+    </div>
+  </header>

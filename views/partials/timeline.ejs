@@ -1,0 +1,12 @@
+<% if (order.status === 'Cancelled') { %>
+  <div class="cancelled-box">❌ This order was cancelled.</div>
+<% } else { %>
+  <ol class="timeline">
+    <% steps.forEach((s, i) => { %>
+      <li class="<%= i < stepIndex ? 'done' : (i === stepIndex ? 'current' : '') %>">
+        <span class="dot"><%= i <= stepIndex ? '✓' : (i + 1) %></span>
+        <span class="lbl"><%= s %></span>
+      </li>
+    <% }) %>
+  </ol>
+<% } %>

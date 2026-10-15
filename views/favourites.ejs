@@ -1,0 +1,66 @@
+<%- include('partials/header', { pageTitle: 'Favourites' }) %>
+<div class="wrap section-pad">
+  <h2>Your favourites</h2>
+  <% if (vendors.length === 0 && products.length === 0) { %>
+    <div class="empty-state">
+      <span class="emoji">♡</span>
+      <p>Nothing saved yet. Tap the heart on any restaurant, store or dish to save it here.</p>
+      <a href="/" class="btn btn-primary" style="margin-top:10px;">Start exploring</a>
+    </div>
+  <% } %>
+
+  <% if (vendors.length) { %>
+    <h3 style="margin:22px 0 12px;font-size:1.15rem;">Restaurants &amp; stores</h3>
+    <div class="vendor-grid">
+      <% vendors.forEach(v => { %>
+        <div class="vendor-card">
+          <a href="/vendor/<%= v.id %>" class="vendor-link">
+            <% if (v.image_url) { %>
+              <div class="vendor-banner has-photo" style="--vc: <%= v.color %>22;"><span><%= v.image_emoji %></span>
+                <img src="<%= v.image_url %>" alt="<%= v.name %>" loading="lazy" referrerpolicy="no-referrer"
+                  onload="this.parentNode.classList.add('loaded')" onerror="var p=this.parentNode;this.remove();p.classList.add('loaded')"></div>
+            <% } else { %>
+              <div class="vendor-banner" style="--vc: <%= v.color %>22;"><%= v.image_emoji %></div>
+            <% } %>
+            <div class="vendor-body">
+              <h3><%= v.name %></h3>
+              <span class="tag" style="color:var(--ink-soft);font-size:0.88rem;"><%= v.category %></span>
+              <div class="vendor-meta"><span class="rating-pill">★ <%= v.rating %></span><span><%= v.delivery_time %></span></div>
+            </div>
+          </a>
+          <form action="/favourites/toggle" method="POST" class="fav-form">
+            <input type="hidden" name="kind" value="vendor"><input type="hidden" name="ref_id" value="<%= v.id %>"><input type="hidden" name="next" value="/favourites">
+            <button type="submit" class="heart on" aria-label="Remove from favourites">♥</button>
+          </form>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <% if (products.length) { %>
+    <h3 style="margin:26px 0 6px;font-size:1.15rem;">Dishes &amp; items</h3>
+    <% products.forEach(p => { %>
+      <div class="menu-item">
+        <% if (p.image_url) { %>
+          <div class="item-emoji has-photo"><span><%= p.image_emoji %></span>
+            <img src="<%= p.image_url %>" alt="<%= p.name %>" loading="lazy" referrerpolicy="no-referrer"
+              onload="this.parentNode.classList.add('loaded')" onerror="var q=this.parentNode;this.remove();q.classList.add('loaded')"></div>
+        <% } else { %><div class="item-emoji"><%= p.image_emoji %></div><% } %>
+        <div class="item-info">
+          <h4><span class="veg-dot <%= p.veg ? '' : 'non' %>"></span><%= p.name %></h4>
+          <p>from <a href="/vendor/<%= p.vendor_id %>" style="text-decoration:underline;"><%= p.vendor_name %></a></p>
+          <div class="item-price">₹<%= p.price.toFixed(0) %></div>
+        </div>
+        <form action="/favourites/toggle" method="POST" class="fav-inline">
+          <input type="hidden" name="kind" value="product"><input type="hidden" name="ref_id" value="<%= p.id %>"><input type="hidden" name="next" value="/favourites">
+          <button type="submit" class="heart small on" aria-label="Remove from favourites">♥</button>
+        </form>
+        <form action="/cart/add" method="POST">
+          <input type="hidden" name="productId" value="<%= p.id %>"><input type="hidden" name="vendorId" value="<%= p.vendor_id %>"><input type="hidden" name="mode" value="<%= p.vendor_mode %>">
+          <button class="add-btn" type="submit">Add</button>
+        </form>
+      </div>
+    <% }) %>
+  <% } %>
+</div>
+<%- include('partials/footer') %>

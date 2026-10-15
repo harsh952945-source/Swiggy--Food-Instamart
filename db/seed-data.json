@@ -1,0 +1,708 @@
+{
+  "vendors": [
+    {
+      "mode": "food",
+      "name": "Spice Route Kitchen",
+      "category": "North Indian",
+      "description": "Rich curries and tandoori classics",
+      "rating": 4.3,
+      "delivery_time": "28 mins",
+      "image_emoji": "🍛",
+      "image_url": "/images/vendors/1.jpg",
+      "color": "#D9455F",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Butter Chicken",
+          "description": "Creamy tomato curry with tandoori chicken",
+          "price": 289,
+          "unit": "1 plate",
+          "category": "Chicken",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/1.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Paneer Tikka Masala",
+          "description": "Grilled paneer in spiced gravy",
+          "price": 249,
+          "unit": "1 plate",
+          "category": "Paneer",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/2.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Dal Makhani",
+          "description": "Slow-cooked black lentils with butter",
+          "price": 199,
+          "unit": "1 plate",
+          "category": "Dal",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/3.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Garlic Naan",
+          "description": "Tandoor-baked flatbread",
+          "price": 59,
+          "unit": "1 plate",
+          "category": "Bread",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/4.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Chicken Biryani",
+          "description": "Aromatic basmati rice with spiced chicken",
+          "price": 259,
+          "unit": "1 plate",
+          "category": "Rice",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/5.jpg",
+          "veg": 0,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "food",
+      "name": "Momo Cloud",
+      "category": "Tibetan · Chinese",
+      "description": "Steamed momos and noodle bowls",
+      "rating": 4.5,
+      "delivery_time": "22 mins",
+      "image_emoji": "🥟",
+      "image_url": "/images/vendors/2.jpg",
+      "color": "#3E8EC9",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Chicken Steamed Momos",
+          "description": "8 pcs with spicy chutney",
+          "price": 179,
+          "unit": "1 plate",
+          "category": "Momos",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/6.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Veg Fried Momos",
+          "description": "8 pcs pan fried",
+          "price": 149,
+          "unit": "1 plate",
+          "category": "Momos",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/7.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Hakka Noodles",
+          "description": "Wok tossed vegetable noodles",
+          "price": 169,
+          "unit": "1 plate",
+          "category": "Noodles",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/8.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Chilli Paneer",
+          "description": "Crispy paneer in chilli garlic sauce",
+          "price": 219,
+          "unit": "1 plate",
+          "category": "Starters",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/9.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "food",
+      "name": "Pizza Hut",
+      "category": "Italian · Pizza",
+      "description": "Wood-fired pizzas, fresh out the oven",
+      "rating": 4.2,
+      "delivery_time": "32 mins",
+      "image_emoji": "🍕",
+      "image_url": "/images/vendors/3.jpg",
+      "color": "#E08A2C",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Margherita",
+          "description": "Classic tomato, mozzarella, basil",
+          "price": 249,
+          "unit": "1 plate",
+          "category": "10 inch",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/10.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Farmhouse",
+          "description": "Loaded with garden veggies",
+          "price": 299,
+          "unit": "1 plate",
+          "category": "10 inch",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/11.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Pepperoni Blast",
+          "description": "Double pepperoni, extra cheese",
+          "price": 349,
+          "unit": "1 plate",
+          "category": "10 inch",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/12.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Garlic Breadsticks",
+          "description": "Cheesy garlic breadsticks",
+          "price": 129,
+          "unit": "1 plate",
+          "category": "6 pcs",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/13.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "food",
+      "name": "South Indian",
+      "category": "South Indian",
+      "description": "Dosas, idlis and filter coffee",
+      "rating": 4.6,
+      "delivery_time": "20 mins",
+      "image_emoji": "🥞",
+      "image_url": "/images/vendors/4.jpg",
+      "color": "#3E9E6B",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Masala Dosa",
+          "description": "Crispy dosa with potato filling",
+          "price": 129,
+          "unit": "1 plate",
+          "category": "Dosa",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/14.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Idli Sambar",
+          "description": "4 pcs with sambar and chutney",
+          "price": 99,
+          "unit": "1 plate",
+          "category": "Idli",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/15.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Filter Coffee",
+          "description": "South Indian filter coffee",
+          "price": 49,
+          "unit": "1 plate",
+          "category": "Beverage",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/16.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Rava Uttapam",
+          "description": "Semolina pancake with onions",
+          "price": 119,
+          "unit": "1 plate",
+          "category": "Uttapam",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/17.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "food",
+      "name": "Burger King",
+      "category": "American · Burgers",
+      "description": "Juicy grilled burgers and fries",
+      "rating": 4.1,
+      "delivery_time": "25 mins",
+      "image_emoji": "🍔",
+      "image_url": "/images/vendors/5.jpg",
+      "color": "#C9563E",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Classic Cheeseburger",
+          "description": "Beef-style patty with cheddar",
+          "price": 189,
+          "unit": "1 plate",
+          "category": "Burger",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/18.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Crispy Veg Burger",
+          "description": "Crunchy vegetable patty burger",
+          "price": 159,
+          "unit": "1 plate",
+          "category": "Burger",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/19.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Loaded Fries",
+          "description": "Fries with cheese sauce and jalapenos",
+          "price": 149,
+          "unit": "1 plate",
+          "category": "Sides",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/20.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Cold Coffee Shake",
+          "description": "Thick cold coffee shake",
+          "price": 99,
+          "unit": "1 plate",
+          "category": "Beverage",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/21.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "food",
+      "name": "Sushi Origami",
+      "category": "Japanese",
+      "description": "Fresh sushi rolls and bento boxes",
+      "rating": 4.7,
+      "delivery_time": "35 mins",
+      "image_emoji": "🍣",
+      "image_url": "/images/vendors/6.jpg",
+      "color": "#6C3EC9",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "California Roll",
+          "description": "8 pcs crab, avocado, cucumber",
+          "price": 349,
+          "unit": "1 plate",
+          "category": "Rolls",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/22.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Veg Tempura Roll",
+          "description": "8 pcs crispy vegetable tempura",
+          "price": 299,
+          "unit": "1 plate",
+          "category": "Rolls",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/23.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Salmon Nigiri",
+          "description": "4 pcs fresh salmon nigiri",
+          "price": 399,
+          "unit": "1 plate",
+          "category": "Nigiri",
+          "image_emoji": "🍗",
+          "image_url": "/images/products/24.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Miso Soup",
+          "description": "Traditional soybean soup",
+          "price": 89,
+          "unit": "1 plate",
+          "category": "Soup",
+          "image_emoji": "🥗",
+          "image_url": "/images/products/25.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "mart",
+      "name": "QuickMart Essentials",
+      "category": "Groceries",
+      "description": "Daily essentials delivered in minutes",
+      "rating": 4.4,
+      "delivery_time": "12 mins",
+      "image_emoji": "🛒",
+      "image_url": "/images/vendors/7.png",
+      "color": "#2C8E6E",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Basmati Rice 5kg",
+          "description": "Premium long grain rice",
+          "price": 449,
+          "unit": "pack",
+          "category": "Staples",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/26.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Toor Dal 1kg",
+          "description": "Whole yellow lentils",
+          "price": 129,
+          "unit": "pack",
+          "category": "Staples",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/27.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Sunflower Oil 1L",
+          "description": "Refined cooking oil",
+          "price": 159,
+          "unit": "bottle",
+          "category": "Staples",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/28.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Sugar 1kg",
+          "description": "Refined white sugar",
+          "price": 49,
+          "unit": "pack",
+          "category": "Staples",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/29.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Salt 1kg",
+          "description": "Iodised table salt",
+          "price": 25,
+          "unit": "pack",
+          "category": "Staples",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/30.png",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "mart",
+      "name": "FreshBasket",
+      "category": "Fruits & Vegetables",
+      "description": "Farm-fresh produce",
+      "rating": 4.5,
+      "delivery_time": "15 mins",
+      "image_emoji": "🥦",
+      "image_url": "/images/vendors/8.png",
+      "color": "#5FA33E",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Tomatoes 1kg",
+          "description": "Fresh red tomatoes",
+          "price": 39,
+          "unit": "kg",
+          "category": "Vegetables",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/31.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Bananas (Dozen)",
+          "description": "Ripe yellow bananas",
+          "price": 59,
+          "unit": "dozen",
+          "category": "Fruits",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/32.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Onions 1kg",
+          "description": "Fresh onions",
+          "price": 35,
+          "unit": "kg",
+          "category": "Vegetables",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/33.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Apples 1kg",
+          "description": "Crisp red apples",
+          "price": 179,
+          "unit": "kg",
+          "category": "Fruits",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/34.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Spinach Bunch (Palak)",
+          "description": "Fresh leafy spinach",
+          "price": 25,
+          "unit": "bunch",
+          "category": "Vegetables",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/35.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "mart",
+      "name": "DairyDrop",
+      "category": "Dairy & Bakery",
+      "description": "Milk, bread, eggs and more",
+      "rating": 4.3,
+      "delivery_time": "10 mins",
+      "image_emoji": "🥛",
+      "image_url": "/images/vendors/9.jpg",
+      "color": "#3E7EC9",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Toned Milk 1L",
+          "description": "Fresh toned milk",
+          "price": 58,
+          "unit": "litre",
+          "category": "Dairy",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/36.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Brown Bread",
+          "description": "Whole wheat bread loaf",
+          "price": 45,
+          "unit": "pack",
+          "category": "Bakery",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/37.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Farm Eggs (6)",
+          "description": "Fresh whole eggs",
+          "price": 48,
+          "unit": "pack of 6",
+          "category": "Dairy",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/38.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Paneer 200g",
+          "description": "Fresh cottage cheese",
+          "price": 89,
+          "unit": "pack",
+          "category": "Dairy",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/39.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Butter 100g",
+          "description": "Salted table butter",
+          "price": 55,
+          "unit": "pack",
+          "category": "Dairy",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/40.png",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "mart",
+      "name": "SnackHive",
+      "category": "Snacks & Beverages",
+      "description": "Chips, drinks and munchies",
+      "rating": 4.2,
+      "delivery_time": "14 mins",
+      "image_emoji": "🍟",
+      "image_url": "/images/vendors/10.png",
+      "color": "#C98E3E",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Potato Chips",
+          "description": "Classic salted chips",
+          "price": 30,
+          "unit": "pack",
+          "category": "Snacks",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/41.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Cola 750ml",
+          "description": "Chilled soft drink",
+          "price": 40,
+          "unit": "bottle",
+          "category": "Beverages",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/42.png",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Choco Cookies",
+          "description": "Crunchy chocolate chip cookies",
+          "price": 60,
+          "unit": "pack",
+          "category": "Snacks",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/43.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Namkeen Mix 200g",
+          "description": "Spicy Indian snack mix",
+          "price": 55,
+          "unit": "pack",
+          "category": "Snacks",
+          "image_emoji": "🛍️",
+          "image_url": "/images/products/44.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    },
+    {
+      "mode": "food",
+      "name": "Jethalal Chinese",
+      "category": "Chinese",
+      "description": "Spicy and Tasty Chinese food",
+      "rating": 4,
+      "delivery_time": "30 mins",
+      "image_emoji": "🍽️",
+      "image_url": "/images/vendors/11.jpg",
+      "color": "#6C3EC9",
+      "is_active": 1,
+      "products": [
+        {
+          "name": "Chilli Chicken",
+          "description": "Wok-tossed chicken in spicy soy-chilli sauce",
+          "price": 219,
+          "unit": "1 plate",
+          "category": "starter",
+          "image_emoji": "🍽️",
+          "image_url": "/images/products/45.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Manchow Soup",
+          "description": "Thick veggie soup topped with fried noodles",
+          "price": 109,
+          "unit": "Bowl",
+          "category": "Soup",
+          "image_emoji": "🍽️",
+          "image_url": "/images/products/46.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Veg Manchurian",
+          "description": "Vegetable balls in a sweet-spicy gravy",
+          "price": 120,
+          "unit": "1 plate",
+          "category": "Main Cource",
+          "image_emoji": "🍽️",
+          "image_url": "/images/products/47.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Chicken Manchurian",
+          "description": "Fried chicken balls in tangy Manchurian gravy",
+          "price": 150,
+          "unit": "1 plate",
+          "category": "Main Cource",
+          "image_emoji": "🍽️",
+          "image_url": "/images/products/48.jpg",
+          "veg": 0,
+          "is_available": 1
+        },
+        {
+          "name": "Schezwan Fried Rice",
+          "description": "Spicy Schezwan-style fried rice",
+          "price": 149,
+          "unit": "1 plate",
+          "category": "Rice & Noodles",
+          "image_emoji": "🍽️",
+          "image_url": "/images/products/49.jpg",
+          "veg": 1,
+          "is_available": 1
+        },
+        {
+          "name": "Veg Hakka Noodles",
+          "description": "Classic wok-tossed noodles with vegetables",
+          "price": 149,
+          "unit": "1 plate",
+          "category": "Rice & Noodles",
+          "image_emoji": "🍽️",
+          "image_url": "/images/products/50.jpg",
+          "veg": 1,
+          "is_available": 1
+        }
+      ]
+    }
+  ]
+}
